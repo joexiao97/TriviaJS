@@ -12,7 +12,8 @@ export default class TriviaGame {
 
         this.curr_question;
         this.correct_ans;
-        
+        this.timer_active;
+        this.startTimer = this.startTimer.bind(this);;
         this.start();
     };
     
@@ -40,7 +41,9 @@ export default class TriviaGame {
     
     askQuestion(){
         let shuffled_arr = this.shuffle([0,1,2,3]);
+        this.waitForAnswer = true;
         this.curr_question = this.triviaQuestions[this.randomQuestions.pop()];
+        document.getElementById("question-num").textContent = `Question ${10 - this.randomQuestions.length} of 10`;
         this.correct_ans = this.curr_question.correct;
         document.getElementById("trivia-question").textContent = this.curr_question.question;
 
@@ -49,5 +52,57 @@ export default class TriviaGame {
             let num = shuffled_arr.pop();
             document.getElementById(`ans-choice-${(num + 1)}`).textContent = this.curr_question.incorrect.pop();
         }
+
+        if (!this.timer_active) {
+            this.timer_active = setInterval(() => {
+                // console.log(this)
+                this.startTimer();
+            }, 1000);
+        }
     }
+
+    waitForAnswer(){
+        let choice1 = document.getElementById("ans-choice-1");
+        let choice2 = document.getElementById("ans-choice-2");
+        let choice3 = document.getElementById("ans-choice-3");
+        let choice4 = document.getElementById("ans-choice-4");
+
+        choice1.addEventListener("click", function(){
+            if (choice1.value == this.correct_ans){
+                this.score += 1;
+            }
+        });
+
+        choice2.addEventListener("click", function () {
+            if (choice1.value == this.correct_ans) {
+                this.score += 1;
+            }
+        });
+
+        choice3.addEventListener("click", function () {
+            if (choice1.value == this.correct_ans) {
+                this.score += 1;
+            }
+        });
+
+        choice4.addEventListener("click", function () {
+            if (choice1.value == this.correct_ans) {
+                this.score += 1;
+            }
+        });
+        document.getElementById("trivia-score").textContent = `Current Score: ${this.score}`
+    }
+
+    startTimer(){
+        // console.log(this.time_limit)
+        if (this.time_limit < 30) {
+            document.getElementById("trivia-time").textContent = `Time Remaining: ${this.time_limit}s`;
+        }
+        if (this.time_limit > 0) {
+            this.time_limit--;
+        } else {
+            clearInterval(this.timer_active);
+        }
+    }
+
 }
