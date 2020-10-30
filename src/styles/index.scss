@@ -37,6 +37,44 @@ body {
   border: 4px solid blue;
 }
 
+.question-num{
+  text-align: center;
+  margin: 0 auto;
+  font-size: 6vh;
+  margin-top: 1vh;
+}
+
+.trivia-question{
+  text-align: center;
+  margin: 0 auto;
+  font-size: 6vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.ans-choices{
+  height: 67%;
+}
+
+.ans-choices-top, .ans-choices-bot{
+  display: flex;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 6vh;
+  height: 45%;
+}
+
+.ans-choice-1, .ans-choice-2, .ans-choice-3, .ans-choice-4{
+  width: 50%;
+  margin: 0% 2% 2% 2%;
+  display: flex;
+  border: 1px solid red;
+}
+
+.ans-text{
+  margin: auto;
+}
+
 .user-section{
   margin: 0 auto;
   font-size: 8vh;
@@ -44,5 +82,5 @@ body {
 }
 
 .play-restart{
-  border: 1px solid blue;
+  border: 2px solid blue;
 }
